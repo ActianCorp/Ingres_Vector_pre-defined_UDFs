@@ -1,4 +1,5 @@
 -- robust_scale(val) - Scale values of a column using statistics that are robust to outliers.
+-- @excluded_for(non_x100_db)
 CREATE FUNCTION robust_scale(
     val FLOAT8
 )
