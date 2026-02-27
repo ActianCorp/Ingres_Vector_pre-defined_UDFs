@@ -10,7 +10,7 @@ rank INT NOT NULL;
 BEGIN
     SELECT :distinct_count=COUNT(DISTINCT val);
     SELECT :rank=dense_rank() OVER (ORDER BY val);
-    RETURN CONCAT('[', REPEAT('0,', rank-1), '1', REPEAT(',0', distinct_count-rank), ']');
+    RETURN NVL2(val, CONCAT('[', REPEAT('0,', rank-1), '1', REPEAT(',0', distinct_count-rank), ']'), NULL);
 END;\g
 
 CREATE FUNCTION one_hot_encode(
@@ -24,7 +24,7 @@ rank INT NOT NULL;
 BEGIN
     SELECT :distinct_count=COUNT(DISTINCT val);
     SELECT :rank=dense_rank() OVER (ORDER BY val);
-    RETURN CONCAT('[', REPEAT('0,', rank-1), '1', REPEAT(',0', distinct_count-rank), ']');
+    RETURN NVL2(val, CONCAT('[', REPEAT('0,', rank-1), '1', REPEAT(',0', distinct_count-rank), ']'), NULL);
 END;\g
 
 CREATE FUNCTION one_hot_encode(
@@ -38,5 +38,5 @@ rank INT NOT NULL;
 BEGIN
     SELECT :distinct_count=COUNT(DISTINCT val);
     SELECT :rank=dense_rank() OVER (ORDER BY val);
-    RETURN CONCAT('[', REPEAT('0,', rank-1), '1', REPEAT(',0', distinct_count-rank), ']');
+    RETURN NVL2(val, CONCAT('[', REPEAT('0,', rank-1), '1', REPEAT(',0', distinct_count-rank), ']'), NULL);
 END;\g
