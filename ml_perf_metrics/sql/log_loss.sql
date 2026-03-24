@@ -28,9 +28,9 @@ BEGIN
 END;\g
 
 CREATE FUNCTION log_loss(
-    y_true VARCHAR,
+    y_true VARCHAR(32000),
     y_prob FLOAT8,
-    target_class VARCHAR
+    target_class VARCHAR(32000)
 )
 RETURN (FLOAT8)
 AS

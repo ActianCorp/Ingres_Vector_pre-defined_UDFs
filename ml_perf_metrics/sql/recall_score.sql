@@ -22,9 +22,9 @@ BEGIN
 END;\g
 
 CREATE FUNCTION recall_score(
-    y_true VARCHAR,
-    y_pred VARCHAR,
-    target_class VARCHAR
+    y_true VARCHAR(32000),
+    y_pred VARCHAR(32000),
+    target_class VARCHAR(32000)
 )
 RETURN (FLOAT8)
 AS
