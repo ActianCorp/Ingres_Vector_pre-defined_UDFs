@@ -17,7 +17,7 @@ BEGIN
     :total_positives = true_positives + false_positives;
 
     -- Return precision, handling case where there are no actual positives
-    RETURN IF(total_positives = 0, NULL,
+    RETURN IF(total_positives = 0, 0,
               CAST(true_positives AS FLOAT8) / CAST(total_positives AS FLOAT8));
 END;\g
 
@@ -39,6 +39,6 @@ BEGIN
     :total_positives = true_positives + false_positives;
 
     -- Return precision, handling case where there are no actual positives
-    RETURN IF(total_positives = 0, NULL,
+    RETURN IF(total_positives = 0, 0,
               CAST(true_positives AS FLOAT8) / CAST(total_positives AS FLOAT8));
 END;\g

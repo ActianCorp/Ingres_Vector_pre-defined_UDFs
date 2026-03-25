@@ -29,7 +29,7 @@ BEGIN
 
     -- Return f1_score (2 * (precision * recall) / (precision + recall))
     -- Handle cases where precision or recall is NULL or when their sum is 0
-    RETURN IF(prec IS NULL OR recall IS NULL OR (prec + recall) = 0, NULL,
+    RETURN IF(prec IS NULL OR recall IS NULL OR (prec + recall) = 0, 0,
               (2.0 * prec * recall) / (prec + recall));
 END;\g
 
@@ -63,6 +63,6 @@ BEGIN
 
     -- Return f1_score (2 * (precision * recall) / (precision + recall))
     -- Handle cases where precision or recall is NULL or when their sum is 0
-    RETURN IF(prec IS NULL OR recall IS NULL OR (prec + recall) = 0, NULL,
+    RETURN IF(prec IS NULL OR recall IS NULL OR (prec + recall) = 0, 0,
               (2.0 * prec * recall) / (prec + recall));
 END;\g

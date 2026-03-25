@@ -17,7 +17,7 @@ BEGIN
     :actual_positives = true_positives + false_negatives;
 
     -- Return recall, handling case where there are no actual positives
-    RETURN IF(actual_positives = 0, NULL,
+    RETURN IF(actual_positives = 0, 0,
               CAST(true_positives AS FLOAT8) / CAST(actual_positives AS FLOAT8));
 END;\g
 
@@ -39,6 +39,6 @@ BEGIN
     :actual_positives = true_positives + false_negatives;
 
     -- Return recall, handling case where there are no actual positives
-    RETURN IF(actual_positives = 0, NULL,
+    RETURN IF(actual_positives = 0, 0,
               CAST(true_positives AS FLOAT8) / CAST(actual_positives AS FLOAT8));
 END;\g
