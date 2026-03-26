@@ -42,3 +42,25 @@ BEGIN
     RETURN IF(total_positives = 0, 0,
               CAST(true_positives AS FLOAT8) / CAST(total_positives AS FLOAT8));
 END;\g
+
+CREATE FUNCTION precision_score(
+    y_true FLOAT8,
+    y_pred FLOAT8,
+    target_class FLOAT8
+)
+RETURN (FLOAT8)
+AS
+DECLARE
+    true_positives INTEGER NOT NULL;
+    false_positives INTEGER NOT NULL;
+    total_positives INTEGER NOT NULL;
+BEGIN
+    SELECT :true_positives = SUM(CASE WHEN y_true = y_pred AND y_pred = target_class THEN 1 ELSE 0 END);
+    SELECT :false_positives = SUM(CASE WHEN y_true != y_pred AND y_pred = target_class THEN 1 ELSE 0 END);
+
+    :total_positives = true_positives + false_positives;
+
+    -- Return precision, handling case where there are no actual positives
+    RETURN IF(total_positives = 0, 0,
+              CAST(true_positives AS FLOAT8) / CAST(total_positives AS FLOAT8));
+END;\g
