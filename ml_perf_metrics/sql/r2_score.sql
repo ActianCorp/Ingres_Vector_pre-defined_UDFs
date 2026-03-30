@@ -20,7 +20,9 @@ BEGIN
 
     -- R2 score
     -- Handle edge case where SS_tot is 0 (all y_true values are the same)
-    RETURN IF(ss_tot = 0,
-              IF(ss_res = 0, 1.0, 0.0),  -- Perfect prediction = 1.0, otherwise 0.0
-              1.0 - (ss_res / ss_tot));  -- Standard R2 formula
+    RETURN CASE
+        WHEN ss_tot = 0 AND ss_res = 0 THEN 1.0 -- Perfect prediction
+        WHEN ss_tot = 0 AND ss_res != 0 THEN 0.0
+        ELSE 1.0 - (ss_res / ss_tot) -- Standard R2 formula
+    END;
 END;\g
