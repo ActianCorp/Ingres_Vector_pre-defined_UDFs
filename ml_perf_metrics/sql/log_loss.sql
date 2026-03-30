@@ -1,4 +1,4 @@
--- log_loss(y_true, y_prob, target_class) - Calculate log loss with probability input for the target class.
+-- log_loss(y_true, y_prob, target_class) - Calculate log loss with probability input for the target class. Returns NULL if y_prob is invalid (not in range [0, 1]).
 CREATE FUNCTION log_loss(
     y_true INTEGER,
     y_prob FLOAT8,
@@ -15,6 +15,7 @@ BEGIN
     -- Calculate average loss for the target class with epsilon clipping
     RETURN AVG(
         CASE
+            WHEN y_prob < 0 OR y_prob > 1 THEN NULL
             WHEN y_true != target_class THEN 0
             -- Clip probabilities to [eps, 1-eps] range to avoid log(0)
             WHEN y_prob < eps THEN
@@ -43,6 +44,7 @@ BEGIN
     -- Calculate average loss for the target class with epsilon clipping
     RETURN AVG(
         CASE
+            WHEN y_prob < 0 OR y_prob > 1 THEN NULL
             WHEN y_true != target_class THEN 0
             -- Clip probabilities to [eps, 1-eps] range to avoid log(0)
             WHEN y_prob < eps THEN
@@ -71,6 +73,7 @@ BEGIN
     -- Calculate average loss for the target class with epsilon clipping
     RETURN AVG(
         CASE
+            WHEN y_prob < 0 OR y_prob > 1 THEN NULL
             WHEN y_true != target_class THEN 0
             -- Clip probabilities to [eps, 1-eps] range to avoid log(0)
             WHEN y_prob < eps THEN
