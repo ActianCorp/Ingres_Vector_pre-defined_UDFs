@@ -1,4 +1,4 @@
--- recall_score(y_true, y_pred, target_class) - Calculate recall (sensitivity) for classification.
+-- recall_score(y_true, y_pred, target_class) - Calculate recall (sensitivity) for the target class. Recall is the ratio tp / (tp + fn) where tp is the number of true positives and fn the number of false negatives.
 CREATE FUNCTION recall_score(
     y_true INTEGER,
     y_pred INTEGER,

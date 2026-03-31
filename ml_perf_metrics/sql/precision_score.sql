@@ -1,4 +1,4 @@
--- precision_score(y_true, y_pred, target_class) - Compute precision is the ratio tp / (tp + fp) where tp is the number of true positives and fp the number of false positives.
+-- precision_score(y_true, y_pred, target_class) - Calculate precision for the target class. Precision is the ratio tp / (tp + fp) where tp is the number of true positives and fp the number of false positives.
 CREATE FUNCTION precision_score(
     y_true INTEGER,
     y_pred INTEGER,

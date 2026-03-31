@@ -1,4 +1,4 @@
--- f1_score(y_true, y_pred, target_class) - Compute the F1 score, also known as balanced F-score or F-measure
+-- f1_score(y_true, y_pred, target_class) - Calculate the F1 score, also known as balanced F-score or F-measure, for the target class.
 CREATE FUNCTION f1_score(
     y_true INTEGER,
     y_pred INTEGER,
